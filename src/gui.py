@@ -65,3 +65,74 @@ class CompareApp:
     def show_completion_dialog(self, output_path: str) -> None:
         from PySide6.QtWidgets import QMessageBox
         QMessageBox.about(None, "完成", f"对比完成，输出文件：{output_path}")
+
+
+def main():
+    import sys
+    from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QTextEdit, QLineEdit, QLabel
+    
+    app = QApplication(sys.argv)
+    window = QMainWindow()
+    window.setWindowTitle("Datalog对比工具")
+    window.setGeometry(100, 100, 600, 400)
+    
+    central_widget = QWidget()
+    layout = QVBoxLayout()
+    
+    base_layout = QHBoxLayout()
+    base_label = QLabel("比较数据: 未选择")
+    base_btn = QPushButton("选择文件")
+    base_layout.addWidget(base_label)
+    base_layout.addWidget(base_btn)
+    layout.addLayout(base_layout)
+    
+    compare_layout = QHBoxLayout()
+    compare_label = QLabel("被比较数据: 未选择")
+    compare_btn = QPushButton("选择文件")
+    compare_layout.addWidget(compare_label)
+    compare_layout.addWidget(compare_btn)
+    layout.addLayout(compare_layout)
+    
+    output_layout = QHBoxLayout()
+    output_label = QLabel("输出文件:")
+    output_input = QLineEdit("output.csv")
+    output_layout.addWidget(output_label)
+    output_layout.addWidget(output_input)
+    layout.addLayout(output_layout)
+    
+    run_btn = QPushButton("开始执行")
+    layout.addWidget(run_btn)
+    
+    log_label = QLabel("运行日志:")
+    layout.addWidget(log_label)
+    
+    log_text = QTextEdit()
+    log_text.setReadOnly(True)
+    layout.addWidget(log_text)
+    
+    window.setCentralWidget(central_widget)
+    central_widget.setLayout(layout)
+    
+    compare_app = CompareApp()
+    
+    def on_select_base():
+        path = compare_app.select_base_file()
+        if path:
+            base_label.setText(f"比较数据: {path}")
+    
+    def on_select_compare():
+        paths = compare_app.select_compare_files()
+        if paths:
+            compare_label.setText(f"被比较数据: {len(paths)} 个文件")
+    
+    def on_run():
+        compare_app.set_output_file(output_input.text())
+        compare_app.run_comparison()
+        log_text.setText(compare_app.get_log_text())
+    
+    base_btn.clicked.connect(on_select_base)
+    compare_btn.clicked.connect(on_select_compare)
+    run_btn.clicked.connect(on_run)
+    
+    window.show()
+    sys.exit(app.exec())

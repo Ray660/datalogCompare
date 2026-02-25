@@ -26,10 +26,11 @@ def match_cords(base_file: str, compare_files: list[str]) -> dict[str, pd.DataFr
     result = {}
     for compare_file in compare_files:
         compare_df = pd.read_csv(compare_file, encoding='utf-8', skiprows=[1, 2, 3])
-        compare_cords = compare_df['Cord'].dropna().astype(str)
-        compare_cords = compare_cords[compare_cords != '']
         
-        matched_mask = compare_cords.str.lower().isin(base_cords_lower)
+        compare_df = compare_df[compare_df['Cord'].notna()]
+        compare_df = compare_df[compare_df['Cord'].astype(str) != '']
+        
+        matched_mask = compare_df['Cord'].astype(str).str.lower().isin(base_cords_lower)
         matched_df = compare_df[matched_mask]
         
         if not matched_df.empty:

@@ -34,8 +34,8 @@ def run_comparison(base_file: str, compare_files: list[str], output_file: str = 
 
 def main():
     parser = argparse.ArgumentParser(description="Datalog对比工具")
-    parser.add_argument("--base", required=True, help="比较数据文件路径")
-    parser.add_argument("--compare", action="append", required=True, help="被比较数据文件路径（可多次使用）")
+    parser.add_argument("--base", help="比较数据文件路径")
+    parser.add_argument("--compare", action="append", help="被比较数据文件路径（可多次使用）")
     parser.add_argument("--output", default="output.csv", help="输出文件路径（默认: output.csv）")
     parser.add_argument("--gui", action="store_true", help="启动GUI模式")
     
@@ -45,6 +45,8 @@ def main():
         from src.gui import main as gui_main
         gui_main()
     else:
+        if not args.base or not args.compare:
+            parser.error("命令行模式需要 --base 和 --compare 参数")
         run_comparison(args.base, args.compare, args.output)
 
 
