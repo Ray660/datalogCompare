@@ -3,7 +3,8 @@ import pandas as pd
 
 def get_data_columns(df: pd.DataFrame) -> list[str]:
     """获取数据列列表（从G列开始，即Index,Cord,Time,HBin,SBin,Site之后的列）"""
-    pass
+    fixed_columns = ["Index", "Cord", "Time", "HBin", "SBin", "Site"]
+    return [col for col in df.columns if col not in fixed_columns]
 
 
 def compare_columns(base_row: pd.Series, compare_row: pd.Series) -> dict[str, str]:
@@ -17,4 +18,22 @@ def compare_columns(base_row: pd.Series, compare_row: pd.Series) -> dict[str, st
     Returns:
         dict: {列名: 差异值}，无差异的列不返回
     """
-    pass
+    result = {}
+    for col in base_row.index:
+        base_val = str(base_row[col]) if pd.notna(base_row[col]) else ""
+        compare_val = str(compare_row[col]) if pd.notna(compare_row[col]) else ""
+        
+        if base_val == "" and compare_val == "":
+            continue
+        
+        if base_val == compare_val:
+            continue
+        
+        if base_val == "":
+            result[col] = f"{compare_val}-{base_val}"
+        elif compare_val == "":
+            result[col] = f"{compare_val}-{base_val}"
+        else:
+            result[col] = f"{compare_val}-{base_val}"
+    
+    return result
