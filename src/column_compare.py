@@ -19,7 +19,9 @@ def compare_columns(base_row: pd.Series, compare_row: pd.Series) -> dict[str, st
         dict: {列名: 差异值}，无差异的列不返回
     """
     result = {}
-    for col in base_row.index:
+    common_cols = base_row.index.intersection(compare_row.index)
+    
+    for col in common_cols:
         base_val = str(base_row[col]) if pd.notna(base_row[col]) else ""
         compare_val = str(compare_row[col]) if pd.notna(compare_row[col]) else ""
         
@@ -29,11 +31,6 @@ def compare_columns(base_row: pd.Series, compare_row: pd.Series) -> dict[str, st
         if base_val == compare_val:
             continue
         
-        if base_val == "":
-            result[col] = f"{compare_val}-{base_val}"
-        elif compare_val == "":
-            result[col] = f"{compare_val}-{base_val}"
-        else:
-            result[col] = f"{compare_val}-{base_val}"
+        result[col] = f"{compare_val}-{base_val}"
     
     return result
