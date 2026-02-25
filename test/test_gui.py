@@ -45,6 +45,7 @@ class TestCompareApp:
             f.write("Index,Cord,Time,HBin\n")
             f.write("TestText,,,\n")
             f.write("HiLimit,,,\n")
+            f.write("LoLimit,,,\n")
             f.write("Unit,,,\n")
             f.write("0,10_0,5054,10\n")
             base_file = f.name
@@ -53,6 +54,7 @@ class TestCompareApp:
             f.write("Index,Cord,Time,HBin\n")
             f.write("TestText,,,\n")
             f.write("HiLimit,,,\n")
+            f.write("LoLimit,,,\n")
             f.write("Unit,,,\n")
             f.write("0,10_0,5054,14\n")
             compare_file = f.name

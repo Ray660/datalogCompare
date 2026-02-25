@@ -3,7 +3,7 @@ import pandas as pd
 
 def get_cords_from_base(base_file: str) -> list[str]:
     """从比较数据中获取所有非空Cord值（去重、忽略大小写）"""
-    df = pd.read_csv(base_file, encoding='utf-8', skiprows=[1, 2, 3])
+    df = pd.read_csv(base_file, encoding='utf-8', skiprows=[1, 2, 3, 4])
     cords = df['Cord'].dropna().astype(str)
     cords = cords[cords != '']
     return sorted(cords.unique().tolist())
@@ -25,7 +25,7 @@ def match_cords(base_file: str, compare_files: list[str]) -> dict[str, pd.DataFr
     
     result = {}
     for compare_file in compare_files:
-        compare_df = pd.read_csv(compare_file, encoding='utf-8', skiprows=[1, 2, 3])
+        compare_df = pd.read_csv(compare_file, encoding='utf-8', skiprows=[1, 2, 3, 4])
         
         compare_df = compare_df[compare_df['Cord'].notna()]
         compare_df = compare_df[compare_df['Cord'].astype(str) != '']

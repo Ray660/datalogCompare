@@ -7,6 +7,20 @@ def get_data_columns(df: pd.DataFrame) -> list[str]:
     return [col for col in df.columns if col not in fixed_columns]
 
 
+def format_value(val) -> str:
+    if pd.isna(val) or str(val).strip() == '':
+        return ''
+    s = str(val)
+    if '.' in s:
+        try:
+            f = float(s)
+            if f == int(f):
+                return str(int(f))
+        except:
+            pass
+    return s
+
+
 def compare_columns(base_row: pd.Series, compare_row: pd.Series) -> dict[str, str]:
     """
     对比数据列
@@ -22,8 +36,8 @@ def compare_columns(base_row: pd.Series, compare_row: pd.Series) -> dict[str, st
     common_cols = base_row.index.intersection(compare_row.index)
     
     for col in common_cols:
-        base_val = str(base_row[col]) if pd.notna(base_row[col]) else ""
-        compare_val = str(compare_row[col]) if pd.notna(compare_row[col]) else ""
+        base_val = format_value(base_row[col])
+        compare_val = format_value(compare_row[col])
         
         if base_val == "" and compare_val == "":
             continue

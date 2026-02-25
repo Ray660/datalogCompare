@@ -14,6 +14,7 @@ class TestGetCordsFromBase:
             f.write("Index,Cord,Time,HBin\n")
             f.write("TestText,,,\n")
             f.write("HiLimit,,,\n")
+            f.write("LoLimit,,,\n")
             f.write("Unit,,,\n")
             f.write("0,10_0,5054,10\n")
             f.write("1,11_0,5064,14\n")
@@ -30,6 +31,7 @@ class TestGetCordsFromBase:
             f.write("Index,Cord,Time,HBin\n")
             f.write("TestText,,,\n")
             f.write("HiLimit,,,\n")
+            f.write("LoLimit,,,\n")
             f.write("Unit,,,\n")
             f.write("0,,5054,10\n")
             f.write("1,11_0,5064,14\n")
@@ -46,6 +48,7 @@ class TestGetCordsFromBase:
             f.write("Index,Cord,Time,HBin\n")
             f.write("TestText,,,\n")
             f.write("HiLimit,,,\n")
+            f.write("LoLimit,,,\n")
             f.write("Unit,,,\n")
             f.write("0,10_0,5054,10\n")
             f.write("1,10_0,5064,14\n")
@@ -64,6 +67,7 @@ class TestMatchCords:
             f.write("Index,Cord,Time,HBin\n")
             f.write("TestText,,,\n")
             f.write("HiLimit,,,\n")
+            f.write("LoLimit,,,\n")
             f.write("Unit,,,\n")
             f.write("0,10_0,5054,10\n")
             f.write("1,11_0,5064,14\n")
@@ -73,6 +77,7 @@ class TestMatchCords:
             f.write("Index,Cord,Time,HBin\n")
             f.write("TestText,,,\n")
             f.write("HiLimit,,,\n")
+            f.write("LoLimit,,,\n")
             f.write("Unit,,,\n")
             f.write("0,10_0,5054,14\n")
             compare_file = f.name
@@ -90,6 +95,7 @@ class TestMatchCords:
             f.write("Index,Cord,Time,HBin\n")
             f.write("TestText,,,\n")
             f.write("HiLimit,,,\n")
+            f.write("LoLimit,,,\n")
             f.write("Unit,,,\n")
             f.write("0,10_0,5054,10\n")
             f.write("1,11_0,5064,14\n")
@@ -99,6 +105,7 @@ class TestMatchCords:
             f.write("Index,Cord,Time,HBin\n")
             f.write("TestText,,,\n")
             f.write("HiLimit,,,\n")
+            f.write("LoLimit,,,\n")
             f.write("Unit,,,\n")
             f.write("0,10_0,5054,14\n")
             compare_file1 = f.name
@@ -107,6 +114,7 @@ class TestMatchCords:
             f.write("Index,Cord,Time,HBin\n")
             f.write("TestText,,,\n")
             f.write("HiLimit,,,\n")
+            f.write("LoLimit,,,\n")
             f.write("Unit,,,\n")
             f.write("0,11_0,5064,14\n")
             compare_file2 = f.name
@@ -127,6 +135,7 @@ class TestMatchCords:
             f.write("Index,Cord,Time,HBin\n")
             f.write("TestText,,,\n")
             f.write("HiLimit,,,\n")
+            f.write("LoLimit,,,\n")
             f.write("Unit,,,\n")
             f.write("0,10_0,5054,10\n")
             base_file = f.name
@@ -135,6 +144,7 @@ class TestMatchCords:
             f.write("Index,Cord,Time,HBin\n")
             f.write("TestText,,,\n")
             f.write("HiLimit,,,\n")
+            f.write("LoLimit,,,\n")
             f.write("Unit,,,\n")
             f.write("0,99_0,5054,14\n")
             compare_file = f.name
@@ -151,6 +161,7 @@ class TestMatchCords:
             f.write("Index,Cord,Time,HBin\n")
             f.write("TestText,,,\n")
             f.write("HiLimit,,,\n")
+            f.write("LoLimit,,,\n")
             f.write("Unit,,,\n")
             f.write("0,10_0,5054,10\n")
             base_file = f.name
@@ -159,6 +170,7 @@ class TestMatchCords:
             f.write("Index,Cord,Time,HBin\n")
             f.write("TestText,,,\n")
             f.write("HiLimit,,,\n")
+            f.write("LoLimit,,,\n")
             f.write("Unit,,,\n")
             f.write("0,10_0,5054,14\n")
             compare_file = f.name
