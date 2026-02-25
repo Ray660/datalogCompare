@@ -20,4 +20,19 @@ def match_cords(base_file: str, compare_files: list[str]) -> dict[str, pd.DataFr
     Returns:
         dict: {文件路径: 匹配行的DataFrame}
     """
-    pass
+    base_cords = get_cords_from_base(base_file)
+    base_cords_lower = [cord.lower() for cord in base_cords]
+    
+    result = {}
+    for compare_file in compare_files:
+        compare_df = pd.read_csv(compare_file, encoding='utf-8', skiprows=[1, 2, 3])
+        compare_cords = compare_df['Cord'].dropna().astype(str)
+        compare_cords = compare_cords[compare_cords != '']
+        
+        matched_mask = compare_cords.str.lower().isin(base_cords_lower)
+        matched_df = compare_df[matched_mask]
+        
+        if not matched_df.empty:
+            result[compare_file] = matched_df
+    
+    return result
