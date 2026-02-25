@@ -12,4 +12,13 @@ def compare_hbin(base_row: pd.Series, compare_row: pd.Series) -> bool:
     Returns:
         bool: True表示HBin相同（不计为差异），False表示不同
     """
-    pass
+    base_hbin = str(base_row.get("HBin", ""))
+    compare_hbin = str(compare_row.get("HBin", ""))
+    
+    if base_hbin == "" and compare_hbin == "":
+        return True
+    
+    if base_hbin == "" or compare_hbin == "":
+        return False
+    
+    return base_hbin == compare_hbin
