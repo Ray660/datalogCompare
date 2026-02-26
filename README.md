@@ -14,8 +14,8 @@
 
 | 情况 | 输出 |
 |------|------|
-| 值不同 | `A-B`（A=被比较数据, B=比较数据） |
-| 被比较数据不存在该列 | `-1` |
+| 值不同 | `A_B`（A=被比较数据, B=比较数据） |
+| 被比较数据不存在该列 | `_B`（B=比较数据） |
 | 值相同 | 留空 |
 
 ## 项目结构
@@ -45,27 +45,27 @@ pip install pandas pytest PySide6
 
 ## 使用方法
 
+### GUI模式（推荐）
+
+直接运行 `Datalog对比工具.exe`，或使用Python：
+
+```bash
+python main.py
+```
+
 ### CLI模式
 
 ```bash
 # 基本用法
-python main.py --base 比较数据.csv --compare 被比较数据1.csv --output output.csv
+python main.py --cli --base 比较数据.csv --compare 被比较数据1.csv --output output.csv
 
 # 多个被比较文件
-python main.py --base 比较数据.csv --compare 被比较数据1.csv --compare 被比较数据2.csv --output output.csv
+python main.py --cli --base 比较数据.csv --compare 被比较数据1.csv --compare 被比较数据2.csv --output output.csv
 ```
 
-### GUI模式
+### 打包的exe
 
-```bash
-python -m src.gui
-```
-
-或者直接运行：
-
-```bash
-python main.py --gui
-```
+下载 releases 中的 `Datalog对比工具_v1.x.x.exe` 直接运行，无需Python环境。
 
 ## CSV文件格式
 
