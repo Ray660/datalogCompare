@@ -1,3 +1,4 @@
+from typing import List
 import os
 
 
@@ -17,7 +18,7 @@ class CompareApp:
             self.base_file = file_path
         return file_path
     
-    def select_compare_files(self) -> list[str]:
+    def select_compare_files(self) -> List[str]:
         from PySide6.QtWidgets import QFileDialog
         file_paths, _ = QFileDialog.getOpenFileNames(
             None, "选择被比较数据文件", "", "CSV Files (*.csv)"

@@ -1,7 +1,8 @@
+from typing import List, Dict
 import pandas as pd
 
 
-def get_data_columns(df: pd.DataFrame) -> list[str]:
+def get_data_columns(df: pd.DataFrame) -> List[str]:
     """获取数据列列表（从G列开始，即Index,Cord,Time,HBin,SBin,Site之后的列）"""
     fixed_columns = ["Index", "Cord", "Time", "HBin", "SBin", "Site"]
     return [col for col in df.columns if col not in fixed_columns]
@@ -21,7 +22,7 @@ def format_value(val) -> str:
     return s
 
 
-def compare_columns(base_row: pd.Series, compare_row: pd.Series) -> dict[str, str]:
+def compare_columns(base_row: pd.Series, compare_row: pd.Series) -> Dict[str, str]:
     """
     对比数据列
     

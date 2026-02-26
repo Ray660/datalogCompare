@@ -1,3 +1,4 @@
+from typing import Dict
 import pandas as pd
 from src.hbin_compare import compare_hbin
 from src.column_compare import compare_columns, get_data_columns, format_value
@@ -13,7 +14,7 @@ def excel_escape(val: str) -> str:
 
 def generate_output(
     base_file: str,
-    matched_data: dict[str, pd.DataFrame],
+    matched_data: Dict[str, pd.DataFrame],
     output_file: str
 ) -> None:
     """

@@ -1,18 +1,11 @@
-"""
-Datalog对比工具 - 主入口
-
-使用方法:
-    GUI模式: python main.py
-    命令行模式: python main.py --base 比较数据.csv --compare 被比较数据1.csv --compare 被比较数据2.csv --output output.csv
-"""
-
+from typing import List
 import argparse
 import sys
 from src.cord_matching import match_cords
 from src.output_writer import generate_output
 
 
-def run_comparison(base_file: str, compare_files: list[str], output_file: str = "output.csv"):
+def run_comparison(base_file: str, compare_files: List[str], output_file: str = "output.csv"):
     """执行对比"""
     print(f"比较数据: {base_file}")
     print(f"被比较数据: {compare_files}")
@@ -37,17 +30,17 @@ def main():
     parser.add_argument("--base", help="比较数据文件路径")
     parser.add_argument("--compare", action="append", help="被比较数据文件路径（可多次使用）")
     parser.add_argument("--output", default="output.csv", help="输出文件路径（默认: output.csv）")
-    parser.add_argument("--gui", action="store_true", help="启动GUI模式")
+    parser.add_argument("--cli", action="store_true", help="使用命令行模式")
     
     args = parser.parse_args()
     
-    if args.gui:
-        from src.gui import main as gui_main
-        gui_main()
-    else:
+    if args.cli:
         if not args.base or not args.compare:
             parser.error("命令行模式需要 --base 和 --compare 参数")
         run_comparison(args.base, args.compare, args.output)
+    else:
+        from src.gui import main as gui_main
+        gui_main()
 
 
 if __name__ == "__main__":
