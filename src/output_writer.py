@@ -65,7 +65,8 @@ def generate_output(
                         else:
                             row_data[col] = ""
                     else:
-                        row_data[col] = "-1"
+                        base_val = format_value(base_row[col])
+                        row_data[col] = f"-{base_val}"
                 all_diff_rows.append(row_data)
     
     if all_diff_rows:
