@@ -61,12 +61,12 @@ def generate_output(
                         base_val = format_value(base_row[col])
                         compare_val = format_value(compare_row[col])
                         if base_val != compare_val:
-                            row_data[col] = f"{compare_val}-{base_val}"
+                            row_data[col] = f"{compare_val}_{base_val}"
                         else:
                             row_data[col] = ""
                     else:
                         base_val = format_value(base_row[col])
-                        row_data[col] = f"-{base_val}"
+                        row_data[col] = f"_{base_val}"
                 all_diff_rows.append(row_data)
     
     if all_diff_rows:

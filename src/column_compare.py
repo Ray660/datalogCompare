@@ -46,6 +46,6 @@ def compare_columns(base_row: pd.Series, compare_row: pd.Series) -> Dict[str, st
         if base_val == compare_val:
             continue
         
-        result[col] = f"{compare_val}-{base_val}"
+        result[col] = f"{compare_val}_{base_val}"
     
     return result
